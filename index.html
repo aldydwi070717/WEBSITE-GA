@@ -1,0 +1,1761 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Griya Abhipraya Sombere - Bapas Kelas I Makassar</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    h1, h2, h3, .hero-title {
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .hero-main-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    }
+    
+    .hero-slogan-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(26, 26, 26, 0.92) 0%, rgba(45, 45, 45, 0.88) 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #1a1a1a, #4a4a4a);
+    }
+    
+    .image-fallback {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+    
+    .gallery-image {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-image:hover {
+      transform: scale(1.05);
+    }
+    
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+    
+    .modal-image {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    
+    .modal-close:hover {
+      transform: scale(1.2);
+    }
+    
+    .modal-caption {
+      color: white;
+      text-align: center;
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .page.active {
+      display: block;
+      opacity: 1;
+    }
+    
+    .nav-link.active {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    
+    .mobile-nav-link.active {
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    }
+    
+    .product-image-wrapper {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.1);
+    }
+    
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+      z-index: 10;
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(212, 175, 55, 0.95);
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+    
+    .product-info-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      z-index: 20;
+    }
+    
+    .product-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    .product-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fbbf24;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .product-description {
+      padding: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+    }
+    
+    .product-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #d4af37;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+      color: white;
+      flex-shrink: 0;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+    
+    .parallax-layer {
+      transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .zoom-on-scroll {
+      transition: transform 0.3s ease-out;
+    }
+    
+    .animate-on-scroll {
+      opacity: 0;
+      transition: all 0.6s ease-out;
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    .fade-in-down {
+      animation: fadeInDown 0.8s ease-out forwards;
+    }
+    
+    .fade-in-left {
+      animation: fadeInLeft 0.8s ease-out forwards;
+    }
+    
+    .fade-in-right {
+      animation: fadeInRight 0.8s ease-out forwards;
+    }
+    
+    .scale-in {
+      animation: scaleIn 0.6s ease-out forwards;
+    }
+    
+    .slide-in-up {
+      animation: slideInUp 0.8s ease-out forwards;
+    }
+    
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+    
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+    
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
+    
+    .delay-600 {
+      animation-delay: 0.6s;
+    }
+    
+    .scrollbar-custom {
+      scrollbar-width: thin;
+      scrollbar-color: #4a4a4a #e0e0e0;
+    }
+    
+    .scrollbar-custom::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .scrollbar-custom::-webkit-scrollbar-track {
+      background: #e0e0e0;
+      border-radius: 10px;
+    }
+    
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+      background: #4a4a4a;
+      border-radius: 10px;
+    }
+    
+    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+      background: #2d2d2d;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full overflow-auto">
+  <div id="app" class="w-full min-h-full"><!-- Image Modal -->
+   <div id="image-modal" class="modal-overlay">
+    <div class="modal-content"><button class="modal-close" id="close-modal">×</button> <img id="modal-img" src="" alt="" class="modal-image">
+     <div id="modal-caption" class="modal-caption"></div>
+    </div>
+   </div><!-- Navigation -->
+   <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-20">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo(event, 'beranda')">
+       <div class="h-12 w-12 flex items-center justify-center"><img src="https://i.imgur.com/JCoSTMI.png" alt="Logo" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-3xl\'>🏛️</div>';">
+       </div>
+       <div>
+        <h1 class="text-xl font-bold" id="nav-title">Griya Abhipraya Sombere</h1>
+        <p class="text-sm font-medium opacity-90">Bapas Kelas I Makassar</p>
+       </div>
+      </div>
+      <div class="hidden md:flex space-x-6"><a href="#" onclick="navigateTo(event, 'beranda')" class="nav-link hover:opacity-80 transition-opacity" data-page="beranda">Beranda</a> <a href="#" onclick="navigateTo(event, 'tentang')" class="nav-link hover:opacity-80 transition-opacity" data-page="tentang">Tentang</a> <a href="#" onclick="navigateTo(event, 'berita')" class="nav-link hover:opacity-80 transition-opacity" data-page="berita">Berita</a> <a href="#" onclick="navigateTo(event, 'penerimaan')" class="nav-link hover:opacity-80 transition-opacity" data-page="penerimaan">Penerimaan Klien</a> <a href="#" onclick="navigateTo(event, 'produk')" class="nav-link hover:opacity-80 transition-opacity" data-page="produk">Produk</a> <a href="#" onclick="navigateTo(event, 'galeri')" class="nav-link hover:opacity-80 transition-opacity" data-page="galeri">Galeri</a> <a href="#" onclick="navigateTo(event, 'info')" class="nav-link hover:opacity-80 transition-opacity" data-page="info">Info Publik</a> <a href="#" onclick="navigateTo(event, 'kontak')" class="nav-link hover:opacity-80 transition-opacity" data-page="kontak">Hubungi Kami</a>
+      </div><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+       </svg></button>
+     </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden">
+     <div class="px-4 pt-2 pb-4 space-y-2"><a href="#" onclick="navigateTo(event, 'beranda')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="beranda">Beranda</a> <a href="#" onclick="navigateTo(event, 'tentang')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="tentang">Tentang</a> <a href="#" onclick="navigateTo(event, 'berita')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="berita">Berita</a> <a href="#" onclick="navigateTo(event, 'penerimaan')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="penerimaan">Penerimaan Klien</a> <a href="#" onclick="navigateTo(event, 'produk')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="produk">Produk</a> <a href="#" onclick="navigateTo(event, 'galeri')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="galeri">Galeri</a> <a href="#" onclick="navigateTo(event, 'info')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="info">Info Publik</a> <a href="#" onclick="navigateTo(event, 'kontak')" class="block px-3 py-2 rounded-lg hover:opacity-80 transition-opacity mobile-nav-link" data-page="kontak">Hubungi Kami</a>
+     </div>
+    </div>
+   </nav><!-- BERANDA PAGE -->
+   <div id="page-beranda" class="page active">
+    <section class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+     <div class="absolute inset-0 parallax-layer" id="hero-bg-layer"><img src="https://i.imgur.com/hV9Majf.jpeg" alt="Gedung Griya Abhipraya Sombere" class="w-full h-full object-cover zoom-on-scroll" id="hero-bg-img" onerror="this.style.display='none';">
+      <div class="absolute inset-0 hero-gradient"></div>
+     </div>
+     <div class="relative z-10 text-center px-4 max-w-5xl mx-auto parallax-layer" id="hero-content-layer">
+      <div class="h-48 w-48 mx-auto mb-8 flex items-center justify-center scale-in float-animation"><img src="https://i.imgur.com/JCoSTMI.png" alt="Logo Griya Abhipraya Sombere" class="w-full h-full object-contain" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'text-8xl\'>🏛️</div>';">
+      </div>
+      <h1 id="hero-title" class="hero-main-title text-5xl md:text-7xl mb-8 fade-in-down delay-200" style="color: #ffffff;">Griya Abhipraya Sombere</h1>
+      <p class="hero-subtitle text-3xl md:text-5xl mb-8 fade-in-up delay-300" style="color: #d4af37; background: linear-gradient(90deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BAPAS KELAS I MAKASSAR</p>
+      <p id="hero-slogan" class="hero-slogan-text text-xl md:text-3xl mb-10 fade-in-up delay-400" style="color: #e0e0e0;">"Pemasyarakatan Pasti Bermanfaat Untuk Masyarakat"</p><button onclick="navigateTo(event, 'tentang')" id="hero-btn" class="inline-block px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 fade-in-up delay-500" style="font-family: 'Montserrat', sans-serif; letter-spacing: 1px;"> Jelajahi Lebih Lanjut </button>
+     </div>
+    </section>
+   </div><!-- TENTANG PAGE -->
+   <div id="page-tentang" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title animate-on-scroll fade-in-down">Tentang Griya Abhipraya Sombere</h2>
+      <div class="mb-16 animate-on-scroll scale-in">
+       <div class="rounded-3xl shadow-2xl overflow-hidden cursor-pointer card-hover" onclick="openImageModal('https://i.imgur.com/hV9Majf.jpeg', 'Gedung Griya Abhipraya Sombere')"><img src="https://i.imgur.com/hV9Majf.jpeg" alt="Gedung Griya Abhipraya Sombere" class="w-full h-auto object-cover" style="max-height: 600px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-96 flex items-center justify-center text-8xl bg-gradient-to-br from-gray-100 to-gray-200\'>��️</div>';">
+       </div>
+       <p class="text-center text-lg mt-6 italic opacity-80">Gedung Griya Abhipraya Sombere - Wadah Transformasi dan Harapan Baru</p>
+      </div>
+      <div class="mb-16 rounded-2xl shadow-lg overflow-hidden card-hover animate-on-scroll fade-in-left">
+       <div class="p-8 md:p-12">
+        <h3 class="text-3xl font-bold mb-6 text-center" style="color: #1a1a1a;">Sejarah Singkat</h3>
+        <div class="space-y-6 text-lg leading-relaxed text-justify">
+         <p>Sebagai wujud nyata dalam mendukung fungsi pembimbingan, <strong>Griya Abhipraya Sombere Bapas Kelas I Makassar</strong> hadir sebagai fasilitas strategis yang dirancang untuk membantu Klien Pemasyarakatan meningkatkan kualitas diri dan mempersiapkan proses reintegrasi sosial yang berkelanjutan.</p>
+         <p>Kehadiran Griya Abhipraya merupakan amanat dari <strong>Keputusan Menteri Hukum dan Hak Asasi Manusia Nomor M.HH-36.OT.02.02 Tahun 2022</strong>, yang menggarisbawahi pentingnya sinergi dengan kelompok masyarakat dalam proses pembimbingan. Regulasi ini menjadi landasan hukum bagi penyelenggaraan pembimbingan yang melibatkan partisipasi aktif masyarakat.</p>
+         <p>Griya Abhipraya Sombere berfungsi sebagai <strong>ruang kolaborasi strategis</strong> antara Balai Pemasyarakatan Kelas I Makassar dengan Kelompok Masyarakat Peduli Pemasyarakatan (Pokmas Lipas). Dalam wadah ini, masyarakat yang memiliki kepedulian terhadap proses reintegrasi sosial Klien Pemasyarakatan dapat berkontribusi aktif melalui berbagai program pembimbingan kepribadian dan kemandirian.</p>
+         <p>Secara etimologi, <strong>"Griya Abhipraya"</strong> berasal dari Bahasa Sansekerta yang bermakna <em>"rumah yang memiliki harapan"</em>. Filosofi ini mencerminkan tujuan utama dari fasilitas ini, yaitu menjadi tempat yang membawa optimisme, transformasi positif, dan kesempatan baru bagi Klien Pemasyarakatan untuk memperbaiki diri, mengembangkan potensi, dan mempersiapkan masa depan yang lebih baik.</p>
+         <p>Adapun kata <strong>"Sombere"</strong> yang berasal dari filosofi masyarakat Makassar, melengkapi makna Griya Abhipraya dengan nilai-nilai keramahan, kehangatan jiwa, ketulusan, dan kerendahan hati. Kombinasi kedua filosofi ini menegaskan komitmen Griya Abhipraya Sombere dalam menyelenggarakan pembimbingan yang humanis, penuh empati, dan berorientasi pada pemulihan martabat kemanusiaan Klien Pemasyarakatan.</p>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16">
+       <div class="text-center mb-12 animate-on-scroll fade-in-down">
+        <h3 class="text-4xl md:text-5xl font-bold mb-6">✨ Filosofi Sombere 🌟</h3>
+        <p class="text-xl max-w-4xl mx-auto leading-relaxed text-justify px-4">Dalam filosofi masyarakat Makassar, <strong>"Sombere"</strong> tidak hanya berarti ramah, tetapi juga mencerminkan <em>kehangatan jiwa, ketulusan, dan kerendahan hati</em> dalam memperlakukan orang lain, terutama tamu atau orang yang membutuhkan bantuan.</p>
+        <p class="text-xl max-w-4xl mx-auto leading-relaxed text-justify mt-4 px-4">Ketika dikaitkan dengan fungsi Griya Abhipraya, nilai "Sombere" memberikan warna pendekatan pembimbingan yang <strong>humanis, penuh empati</strong>, dan mendukung proses transformasi Klien secara utuh.</p>
+       </div>
+       <div class="space-y-12">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+         <div class="order-2 md:order-1 animate-on-scroll fade-in-left">
+          <div class="rounded-3xl shadow-2xl overflow-hidden cursor-pointer card-hover" onclick="openImageModal('https://i.imgur.com/6DMBu2F.jpeg', 'Filosofi Sipakatau')"><img src="https://i.imgur.com/6DMBu2F.jpeg" alt="Filosofi Sipakatau" class="w-full h-full object-cover" style="min-height: 400px; max-height: 600px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-96 flex items-center justify-center text-8xl bg-gradient-to-br from-gray-100 to-gray-200\'>🤝</div>';">
+          </div>
+         </div>
+         <div class="order-1 md:order-2 animate-on-scroll fade-in-right">
+          <div class="p-8 md:p-12 rounded-3xl shadow-2xl" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+           <div class="flex items-center justify-center mb-6">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center text-4xl" style="background: linear-gradient(135deg, #4a4a4a 0%, #2d2d2d 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);"><span class="text-white">🤝</span>
+            </div>
+           </div>
+           <h4 class="text-3xl font-bold mb-6 text-center text-white">Sipakatau</h4>
+           <p class="text-xl text-gray-200 leading-relaxed text-center mb-4">Saling Memanusiakan</p>
+           <p class="text-lg text-gray-300 leading-relaxed text-justify">Menghargai martabat dan kemanusiaan setiap individu tanpa memandang latar belakangnya. Dalam konteks Griya Abhipraya, prinsip ini menjadi fondasi dalam memperlakukan setiap Klien Pemasyarakatan dengan penuh hormat dan empati.</p>
+          </div>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+         <div class="order-1 animate-on-scroll fade-in-right">
+          <div class="rounded-3xl shadow-2xl overflow-hidden cursor-pointer card-hover" onclick="openImageModal('https://i.imgur.com/JS9f6lZ.jpeg', 'Filosofi Sipakainge')"><img src="https://i.imgur.com/JS9f6lZ.jpeg" alt="Filosofi Sipakainge" class="w-full h-full object-cover" style="min-height: 400px; max-height: 600px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-96 flex items-center justify-center text-8xl bg-gradient-to-br from-gray-100 to-gray-200\'>💭</div>';">
+          </div>
+         </div>
+         <div class="order-2 animate-on-scroll fade-in-left">
+          <div class="p-8 md:p-12 rounded-3xl shadow-2xl" style="background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);">
+           <div class="flex items-center justify-center mb-6">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center text-4xl" style="background: linear-gradient(135deg, #5a5a5a 0%, #3d3d3d 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);"><span class="text-white">💭</span>
+            </div>
+           </div>
+           <h4 class="text-3xl font-bold mb-6 text-center text-white">Sipakainge</h4>
+           <p class="text-xl text-gray-200 leading-relaxed text-center mb-4">Saling Mengingatkan</p>
+           <p class="text-lg text-gray-300 leading-relaxed text-justify">Membimbing satu sama lain menuju kebaikan dengan penuh kesabaran dan ketulusan. Melalui bimbingan yang konstruktif, setiap Klien didorong untuk menyadari kesalahan masa lalu dan berkomitmen pada perubahan positif.</p>
+          </div>
+         </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+         <div class="order-2 md:order-1 animate-on-scroll fade-in-left">
+          <div class="rounded-3xl shadow-2xl overflow-hidden cursor-pointer card-hover" onclick="openImageModal('https://i.imgur.com/UPOWCZ6.jpeg', 'Filosofi Sipakalebbi')"><img src="https://i.imgur.com/UPOWCZ6.jpeg" alt="Filosofi Sipakalebbi" class="w-full h-full object-cover" style="min-height: 400px; max-height: 600px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-96 flex items-center justify-center text-8xl bg-gradient-to-br from-gray-100 to-gray-200\'>🙏</div>';">
+          </div>
+         </div>
+         <div class="order-1 md:order-2 animate-on-scroll fade-in-right">
+          <div class="p-8 md:p-12 rounded-3xl shadow-2xl" style="background: linear-gradient(135deg, #3d3d3d 0%, #4a4a4a 100%);">
+           <div class="flex items-center justify-center mb-6">
+            <div class="w-20 h-20 rounded-full flex items-center justify-center text-4xl" style="background: linear-gradient(135deg, #6a6a6a 0%, #4a4a4a 100%); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);"><span class="text-white">🙏</span>
+            </div>
+           </div>
+           <h4 class="text-3xl font-bold mb-6 text-center text-white">Sipakalebbi</h4>
+           <p class="text-xl text-gray-200 leading-relaxed text-center mb-4">Saling Menghormati</p>
+           <p class="text-lg text-gray-300 leading-relaxed text-justify">Menjaga kehormatan dan martabat bersama dalam setiap interaksi. Prinsip ini menciptakan lingkungan yang kondusif bagi proses reintegrasi sosial, di mana setiap individu merasa dihargai dan termotivasi untuk berkembang.</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+       <div class="rounded-2xl shadow-lg p-8 card-hover animate-on-scroll fade-in-left">
+        <h3 class="text-3xl font-bold mb-6">🎯 Visi</h3>
+        <p class="text-lg leading-relaxed">Menjadi pusat pemberdayaan terpadu yang membawa transformasi positif bagi Klien Pemasyarakatan menuju reintegrasi sosial yang sukses dan berkelanjutan.</p>
+       </div>
+       <div class="rounded-2xl shadow-lg p-8 card-hover animate-on-scroll fade-in-right">
+        <h3 class="text-3xl font-bold mb-6">🎯 Misi</h3>
+        <ul class="space-y-3 text-lg">
+         <li class="flex items-start"><span class="mr-2">✓</span> <span>Memberikan pembimbingan kepribadian dan kemandirian berkualitas</span></li>
+         <li class="flex items-start"><span class="mr-2">✓</span> <span>Membangun kolaborasi dengan masyarakat peduli pemasyarakatan</span></li>
+         <li class="flex items-start"><span class="mr-2">✓</span> <span>Menciptakan lingkungan yang mendukung transformasi positif</span></li>
+         <li class="flex items-start"><span class="mr-2">✓</span> <span>Memfasilitasi pengembangan keterampilan dan usaha mandiri</span></li>
+        </ul>
+       </div>
+      </div>
+      <div class="max-w-5xl mx-auto mb-16">
+       <div class="text-center mb-8 animate-on-scroll fade-in-down">
+        <h3 class="text-3xl md:text-4xl font-bold">Sambutan Kepala Balai Pemasyarakatan</h3>
+       </div>
+       <div class="rounded-3xl shadow-2xl overflow-hidden animate-on-scroll scale-in" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="w-56 h-56 rounded-full overflow-hidden shadow-2xl flex-shrink-0" style="border: 6px solid #1a1a1a;"><img src="https://i.imgur.com/H300pjV.jpeg" alt="Kepala Balai Pemasyarakatan" class="w-full h-full object-cover" style="object-position: center 20%;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>👤</div>';">
+          </div>
+          <div class="flex-1">
+           <h4 class="text-2xl md:text-3xl font-bold mb-2" style="color: #1a1a1a;">Dr. Surianto, A.Md.IP., S.Pd., M.M.</h4>
+           <p class="text-xl mb-6 font-semibold" style="color: #4a4a4a;">Kepala Balai Pemasyarakatan Kelas I Makassar</p>
+           <div class="space-y-4 text-lg leading-relaxed text-justify italic p-6 rounded-2xl" style="font-family: 'Georgia', 'Garamond', serif; background: rgba(255, 255, 255, 0.7); border-left: 4px solid #1a1a1a;">
+            <p>"Griya Abhipraya Sombere merupakan wujud komitmen kami dalam menghadirkan pembimbingan yang tidak hanya profesional, tetapi juga penuh empati dan kemanusiaan. Kami percaya bahwa setiap individu memiliki potensi untuk berubah dan berkembang menjadi lebih baik. Melalui pendekatan yang humanis dan terstruktur, kami berupaya memfasilitasi proses transformasi positif bagi setiap klien pemasyarakatan. Mari bersama-sama kita wujudkan reintegrasi sosial yang bermakna dan berkelanjutan."</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="max-w-5xl mx-auto mb-16">
+       <div class="text-center mb-8 animate-on-scroll fade-in-down">
+        <h3 id="welcome-title" class="text-3xl md:text-4xl font-bold">Sambutan Ketua Griya Abhipraya Sombere</h3>
+       </div>
+       <div class="rounded-3xl shadow-2xl overflow-hidden animate-on-scroll scale-in" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="w-56 h-56 rounded-full overflow-hidden shadow-2xl flex-shrink-0" style="border: 6px solid #1a1a1a;"><img src="https://i.imgur.com/H300pjV.jpeg" alt="Ketua Griya Abhipraya Sombere" class="w-full h-full object-cover" style="object-position: center 20%;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>👤</div>';">
+          </div>
+          <div class="flex-1">
+           <h4 id="chairman-name" class="text-2xl md:text-3xl font-bold mb-2" style="color: #1a1a1a;">Dr. A. Marwan Eryansyah, A.Md.IP., S.H., M.H.</h4>
+           <p class="text-xl mb-6 font-semibold" style="color: #4a4a4a;">Ketua Griya Abhipraya Sombere</p>
+           <div class="space-y-4 text-lg leading-relaxed text-justify italic p-6 rounded-2xl" style="font-family: 'Georgia', 'Garamond', serif; background: rgba(255, 255, 255, 0.7); border-left: 4px solid #1a1a1a;">
+            <p>"e-Sombere lahir dari harapan yang sederhana: agar setiap orang yang pernah terjatuh tetap memiliki jalan untuk bangkit. Di sini, kita percaya bahwa manusia tidak boleh dihakimi dari masa lalunya, tetapi dilihat dari keberaniannya untuk berubah. Melalui aplikasi ini, kami membuka pintu seluas-luasnya bagi pemulihan, pendampingan, serta solidaritas kemanusiaan. Semoga e-Sombere menjadi cahaya kecil yang menuntun mereka kembali menemukan martabat, masa depan, dan rumah sosialnya. Bersama kita pulihkan—pelan, tapi pasti; sakit, tapi berarti; jatuh, tapi kembali berdiri."</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- BERITA PAGE -->
+   <div id="page-berita" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title animate-on-scroll fade-in-down">Berita Terbaru</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+       <article class="rounded-2xl shadow-lg overflow-hidden card-hover animate-on-scroll fade-in-up delay-100">
+        <div class="h-48 overflow-hidden">
+         <div class="w-full h-full flex items-center justify-center text-6xl">
+          🎉
+         </div>
+        </div>
+        <div class="p-6"><span class="text-sm font-semibold px-3 py-1 rounded-full">Kegiatan</span>
+         <h3 class="text-xl font-bold mt-4 mb-3">Perayaan Hari Jadi Griya Abhipraya</h3>
+         <p class="mb-4 opacity-80">Momen spesial perayaan hari jadi Griya Abhipraya Sombere bersama seluruh stakeholder dan klien pembimbingan.</p><a href="https://www.facebook.com/share/p/1DNqzdx2fr/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Lihat di Facebook →</a>
+        </div>
+       </article>
+       <article class="rounded-2xl shadow-lg overflow-hidden card-hover animate-on-scroll fade-in-up delay-300">
+        <div class="h-48 overflow-hidden">
+         <div class="w-full h-full flex items-center justify-center text-6xl">
+          🤝
+         </div>
+        </div>
+        <div class="p-6"><span class="text-sm font-semibold px-3 py-1 rounded-full">Kolaborasi</span>
+         <h3 class="text-xl font-bold mt-4 mb-3">Kunjungan dan Koordinasi Stakeholder</h3>
+         <p class="mb-4 opacity-80">Kegiatan koordinasi dan penguatan kerjasama dengan berbagai pihak untuk mendukung program pembimbingan klien pemasyarakatan.</p><a href="https://www.facebook.com/share/r/1ADmQ4V39G/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Lihat di Facebook →</a>
+        </div>
+       </article>
+       <article class="rounded-2xl shadow-lg overflow-hidden card-hover animate-on-scroll fade-in-up delay-500">
+        <div class="h-48 overflow-hidden">
+         <div class="w-full h-full flex items-center justify-center text-6xl">
+          📢
+         </div>
+        </div>
+        <div class="p-6"><span class="text-sm font-semibold px-3 py-1 rounded-full">Program</span>
+         <h3 class="text-xl font-bold mt-4 mb-3">Update Program dan Kegiatan</h3>
+         <p class="mb-4 opacity-80">Informasi terkini seputar program-program pembimbingan dan kegiatan pengembangan diri klien di Griya Abhipraya Sombere.</p><a href="https://www.facebook.com/share/p/1A8TCt6UBP/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline">Lihat di Facebook →</a>
+        </div>
+       </article>
+      </div>
+     </div>
+    </section>
+   </div><!-- PENERIMAAN PAGE -->
+   <div id="page-penerimaan" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title animate-on-scroll fade-in-down">Penerimaan Klien GA Sombere</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+       <div class="rounded-2xl shadow-lg p-8 card-hover animate-on-scroll fade-in-left flex flex-col">
+        <div class="text-center mb-6">
+         <div class="text-6xl mb-4">
+          👤
+         </div>
+         <h3 class="text-3xl font-bold mb-4">Klien Dewasa</h3>
+        </div>
+        <p class="text-lg mb-6 text-center flex-grow">Pendaftaran dan data untuk klien pemasyarakatan dewasa yang akan mengikuti program pembimbingan di Griya Abhipraya Sombere.</p>
+        <div class="space-y-4"><button onclick="showPasswordModal('dewasa')" class="block w-full text-center py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 penerimaan-btn"> Isi Data Klien Dewasa </button>
+        </div>
+       </div>
+       <div class="rounded-2xl shadow-lg p-8 card-hover animate-on-scroll fade-in-right flex flex-col">
+        <div class="text-center mb-6">
+         <div class="text-6xl mb-4">
+          👦
+         </div>
+         <h3 class="text-3xl font-bold mb-4">Klien Anak</h3>
+        </div>
+        <p class="text-lg mb-6 text-center flex-grow">Pendaftaran dan data untuk klien pemasyarakatan anak yang akan mengikuti program pembimbingan khusus di Griya Abhipraya Sombere.</p>
+        <div class="space-y-4"><button onclick="showPasswordModal('anak')" class="block w-full text-center py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 penerimaan-btn"> Isi Data Klien Anak </button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- Password Modal -->
+   <div id="password-modal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 500px;">
+     <div class="bg-white rounded-2xl shadow-2xl p-8" style="position: relative;"><button class="modal-close" id="close-password-modal" style="top: 10px; right: 10px; color: #2d2d2d;">×</button>
+      <div class="text-center mb-6">
+       <div class="text-6xl mb-4">
+        🔒
+       </div>
+       <h3 class="text-2xl font-bold mb-2" style="color: #1a1a1a;">Akses Terbatas</h3>
+       <p class="text-lg" style="color: #4a4a4a;">Masukkan password untuk melanjutkan</p>
+      </div>
+      <div class="space-y-4">
+       <div><label for="password-input" class="block font-semibold mb-2" style="color: #2d2d2d;">Password</label> <input type="password" id="password-input" class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500" placeholder="Masukkan password" style="font-size: 16px;">
+       </div>
+       <div id="password-error" class="hidden p-3 rounded-lg text-center font-semibold" style="background: #fee2e2; color: #991b1b;">
+        ❌ Password salah! Silakan coba lagi.
+       </div><button id="submit-password" class="w-full py-3 rounded-lg font-bold text-lg transition-all duration-300 hover:scale-105" style="background: #2d2d2d; color: #ffffff;"> Verifikasi </button>
+      </div>
+     </div>
+    </div>
+   </div><!-- PRODUK PAGE -->
+   <div id="page-produk" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-8 section-title animate-on-scroll fade-in-down">Etalase Produk</h2>
+      <p class="text-center text-lg mb-16 max-w-3xl mx-auto animate-on-scroll fade-in-up">Produk berkualitas hasil karya klien pemasyarakatan yang dibimbing di Griya Abhipraya Sombere. Setiap pembelian Anda turut mendukung kemandirian mereka.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+       <div class="product-card animate-on-scroll scale-in delay-100">
+        <div class="product-image-wrapper">
+         <div class="product-overlay"></div><img src="https://i.imgur.com/9YY5e3R.jpeg" alt="Madu Hutan" class="product-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-gradient-to-br from-amber-100 to-amber-200\'>🍯</div>';">
+         <div class="product-badge">
+          🏆 Premium
+         </div>
+         <div class="product-info-overlay">
+          <h3 class="product-title">Madu Hutan</h3>
+          <p class="product-price">Rp 85.000</p>
+         </div>
+        </div>
+        <div class="product-description">
+         <p class="text-base mb-6 leading-relaxed opacity-80">Madu hutan murni berkualitas premium, dipanen langsung dari hutan alami. Kaya manfaat dan nutrisi untuk kesehatan keluarga Anda.</p>
+         <div class="product-features">
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>100% Murni &amp; Alami</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Tanpa Pengawet</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Kemasan 250ml</span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="product-card animate-on-scroll scale-in delay-300">
+        <div class="product-image-wrapper">
+         <div class="product-overlay"></div><img src="https://i.imgur.com/Ertu0Tp.jpeg" alt="Abon GA Sombere" class="product-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-gradient-to-br from-orange-100 to-orange-200\'>🥩</div>';">
+         <div class="product-badge">
+          🔥 Best Seller
+         </div>
+         <div class="product-info-overlay">
+          <h3 class="product-title">Abon GA Sombere</h3>
+          <p class="product-price">Rp 35.000 / Rp 45.000</p>
+         </div>
+        </div>
+        <div class="product-description">
+         <p class="text-base mb-6 leading-relaxed opacity-80">Abon khas dengan cita rasa gurih dan rempah yang kaya. Cocok untuk pelengkap makan atau oleh-oleh.</p>
+         <div class="product-features">
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Resep Tradisional</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Daging Pilihan</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Kemasan 250gr &amp; 350gr</span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="product-card animate-on-scroll scale-in delay-500">
+        <div class="product-image-wrapper">
+         <div class="product-overlay"></div><img src="https://i.imgur.com/Tg1BL3n.jpeg" alt="Roti GA Sombere" class="product-image" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-gradient-to-br from-yellow-100 to-yellow-200\'>��</div>';">
+         <div class="product-badge">
+          💰 Ekonomis
+         </div>
+         <div class="product-info-overlay">
+          <h3 class="product-title">Roti GA Sombere</h3>
+          <p class="product-price">Rp 3.000</p>
+         </div>
+        </div>
+        <div class="product-description">
+         <p class="text-base mb-6 leading-relaxed opacity-80">Roti lembut dan nikmat dengan pilihan rasa coklat dan keju. Cocok untuk sarapan atau camilan sehari-hari.</p>
+         <div class="product-features">
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Varian Rasa Coklat</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Varian Rasa Keju</span>
+          </div>
+          <div class="feature-item">
+           <div class="feature-icon">
+            ✓
+           </div><span>Lembut &amp; Nikmat</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="relative max-w-4xl mx-auto rounded-3xl shadow-2xl overflow-hidden animate-on-scroll fade-in-up">
+       <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
+       <div class="relative z-10 p-12 md:p-16 text-center">
+        <div class="text-6xl mb-6">
+         🛒
+        </div>
+        <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">Tertarik Memesan?</h3>
+        <p class="text-lg md:text-xl mb-10 text-gray-200 max-w-2xl mx-auto">Klik tombol di bawah untuk mengisi formulir pemesanan produk Griya Abhipraya Sombere. Setiap pembelian Anda adalah dukungan nyata untuk kemandirian klien pemasyarakatan.</p><a href="https://forms.gle/VrMTC86k2JJZ1p1K8" target="_blank" rel="noopener noreferrer" class="inline-block px-12 py-5 rounded-full font-bold text-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl order-btn" style="background: #d4af37; color: #1a1a1a;"> 📝 Isi Formulir Pemesanan </a>
+        <p class="mt-8 text-sm text-gray-300">💚 Mendukung Program Kemandirian Klien Pemasyarakatan</p>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- GALERI PAGE (Continue from where code was cut) -->
+   <div id="page-galeri" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-8 section-title animate-on-scroll fade-in-down">Galeri Kegiatan</h2>
+      <p class="text-center text-lg mb-16 max-w-3xl mx-auto animate-on-scroll fade-in-up">Dokumentasi kegiatan dan program pembimbingan di Griya Abhipraya Sombere</p>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           🧺
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Pelatihan Laundry</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-6 text-justify" style="color: #2d2d2d;">Pelatihan laundry ini merupakan salah satu bentuk nyata pembekalan keterampilan praktis yang diharapkan dapat menjadi modal Klien dalam memperoleh penghasilan setelah kembali ke masyarakat. Pelatihan kali ini menghadirkan mahasiswa Jurusan Pendidikan Sosiologi Universitas Negeri Makassar (UNM) sebagai instruktur. Para mahasiswa memperagakan berbagai teknik membersihkan noda pada pakaian, mulai dari noda lipstik, oli, hingga tinta. Peserta terlihat antusias mengikuti setiap tahap demonstrasi sembari mempraktikkan teknik yang diajarkan.</p>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Selain pelatihan teknis, peserta juga menerima penguatan dari Seksi Bimbingan Klien Dewasa (BKD) terkait hak dan kewajiban Klien selama menjalani masa integrasi sosial. Penguatan ini diberikan agar Klien tidak hanya terampil, tetapi juga memahami tanggung jawab moral dan administratif dalam proses pembimbingan.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/01tOjlJ.jpeg', 'Pelatihan Laundry - Foto 1')"><img src="https://i.imgur.com/01tOjlJ.jpeg" alt="Pelatihan Laundry 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🧺</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/LbcwXv7.jpeg', 'Pelatihan Laundry - Foto 2')"><img src="https://i.imgur.com/LbcwXv7.jpeg" alt="Pelatihan Laundry 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🧺</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/EdkxiTy.jpeg', 'Pelatihan Laundry - Foto 3')"><img src="https://i.imgur.com/EdkxiTy.jpeg" alt="Pelatihan Laundry 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🧺</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/IaavkbO.jpeg', 'Pelatihan Laundry - Foto 4')"><img src="https://i.imgur.com/IaavkbO.jpeg" alt="Pelatihan Laundry 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🧺</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #fef9c3 0%, #fde047 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           🍌
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Pelatihan Pembuatan Pisang Kembung</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-6 text-justify" style="color: #2d2d2d;">Bimbingan kemandirian melalui pelatihan pembuatan pisang kembung merupakan salah satu bentuk pembinaan yang diberikan kepada Klien Pemasyarakatan dalam rangka mendukung proses reintegrasi sosial secara berkelanjutan. Kegiatan ini bertujuan untuk membekali Klien dengan keterampilan praktis di bidang pengolahan pangan yang mudah diterapkan, bernilai ekonomis, dan berpotensi dikembangkan sebagai usaha mandiri setelah kembali ke tengah masyarakat. Melalui pelatihan ini, Klien didorong untuk mengembangkan sikap mandiri, produktif, dan berorientasi pada peningkatan kesejahteraan.</p>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Pelatihan pembuatan pisang kembung dilaksanakan melalui kerja sama dengan mahasiswa Universitas Islam Negeri (UIN) Alauddin Makassar yang berperan sebagai narasumber kegiatan.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/eQg5EH5.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 1')"><img src="https://i.imgur.com/eQg5EH5.jpeg" alt="Pelatihan Pisang Kembung 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🍌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/VRs9Fwt.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 2')"><img src="https://i.imgur.com/VRs9Fwt.jpeg" alt="Pelatihan Pisang Kembung 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🍌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/URZlvDQ.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 3')"><img src="https://i.imgur.com/URZlvDQ.jpeg" alt="Pelatihan Pisang Kembung 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>��</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/qPozPQN.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 4')"><img src="https://i.imgur.com/qPozPQN.jpeg" alt="Pelatihan Pisang Kembung 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🍌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/Zu7RXyv.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 5')"><img src="https://i.imgur.com/Zu7RXyv.jpeg" alt="Pelatihan Pisang Kembung 5" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🍌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/xhTkyGx.jpeg', 'Pelatihan Pembuatan Pisang Kembung - Foto 6')"><img src="https://i.imgur.com/xhTkyGx.jpeg" alt="Pelatihan Pisang Kembung 6" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🍌</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           🕌
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Ceramah Agama</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Bimbingan kepribadian melalui ceramah agama merupakan salah satu program pembinaan spiritual yang diberikan kepada Klien Pemasyarakatan sebagai bagian integral dari proses reintegrasi sosial. Kegiatan ini bertujuan untuk memperkuat fondasi keimanan, meningkatkan pemahaman nilai-nilai keagamaan, serta membentuk karakter positif yang berlandaskan akhlak mulia. Melalui ceramah agama, Klien didorong untuk menyadari kesalahan masa lalu, bertaubat, dan membangun komitmen untuk menjadi pribadi yang lebih baik. Penyelenggaraan kegiatan ini melibatkan kerja sama strategis dengan Kementerian Agama Kota Makassar serta Yayasan Sahabat Nurul Iman yang berperan sebagai narasumber dalam memberikan bimbingan keagamaan yang komprehensif dan inspiratif.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/DhSMeBX.jpeg', 'Ceramah Agama - Foto 1')"><img src="https://i.imgur.com/DhSMeBX.jpeg" alt="Ceramah Agama 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🕌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/7EZ99C8.jpeg', 'Ceramah Agama - Foto 2')"><img src="https://i.imgur.com/7EZ99C8.jpeg" alt="Ceramah Agama 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🕌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/Tk1t3Ex.jpeg', 'Ceramah Agama - Foto 3')"><img src="https://i.imgur.com/Tk1t3Ex.jpeg" alt="Ceramah Agama 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🕌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/H1PegC0.jpeg', 'Ceramah Agama - Foto 4')"><img src="https://i.imgur.com/H1PegC0.jpeg" alt="Ceramah Agama 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🕌</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/SXr4eEa.jpeg', 'Ceramah Agama - Foto 5')"><img src="https://i.imgur.com/SXr4eEa.jpeg" alt="Ceramah Agama 5" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🕌</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           ⚖️
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Penyuluhan Sadar Hukum</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-6 text-justify" style="color: #2d2d2d;">Bimbingan kepribadian melalui penyuluhan sadar hukum merupakan salah satu bentuk layanan pembimbingan yang diberikan kepada Klien Pemasyarakatan sebagai upaya mendukung proses reintegrasi sosial secara berkelanjutan. Kegiatan ini bertujuan untuk meningkatkan pemahaman Klien terhadap norma hukum yang berlaku, hak dan kewajiban sebagai warga negara, serta konsekuensi hukum dari setiap tindakan yang dilakukan. Melalui pendekatan edukatif dan persuasif, penyuluhan sadar hukum diharapkan mampu menumbuhkan kesadaran internal Klien akan pentingnya kepatuhan terhadap hukum dalam kehidupan bermasyarakat.</p>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Penyelenggaraan kegiatan penyuluhan sadar hukum ini melibatkan narasumber dari Kanwil Kementerian Hukum Sulawesi Selatan, Yayasan Lembaga Bantuan Hukum Makassar, serta Fakultas Hukum Universitas Hasanuddin.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/w8lNfOt.jpeg', 'Penyuluhan Sadar Hukum - Foto 1')"><img src="https://i.imgur.com/w8lNfOt.jpeg" alt="Penyuluhan Sadar Hukum 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>⚖️</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/rR4bok5.jpeg', 'Penyuluhan Sadar Hukum - Foto 2')"><img src="https://i.imgur.com/rR4bok5.jpeg" alt="Penyuluhan Sadar Hukum 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>⚖️</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/CayEcy2.jpeg', 'Penyuluhan Sadar Hukum - Foto 3')"><img src="https://i.imgur.com/CayEcy2.jpeg" alt="Penyuluhan Sadar Hukum 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>⚖️</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/ObmFtej.jpeg', 'Penyuluhan Sadar Hukum - Foto 4')"><img src="https://i.imgur.com/ObmFtej.jpeg" alt="Penyuluhan Sadar Hukum 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>⚖️</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/mNtWzsR.jpeg', 'Penyuluhan Sadar Hukum - Foto 5')"><img src="https://i.imgur.com/mNtWzsR.jpeg" alt="Penyuluhan Sadar Hukum 5" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>⚖️</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           ��
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Pelatihan Musik</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Bimbingan kemandirian melalui pelatihan musik merupakan salah satu bentuk pembinaan yang diberikan kepada Klien Pemasyarakatan sebagai upaya mendukung proses reintegrasi sosial secara menyeluruh. Kegiatan ini bertujuan untuk mengembangkan potensi, bakat, dan minat Klien di bidang seni musik, sekaligus membekali mereka dengan keterampilan yang bernilai positif dan produktif. Melalui pelatihan musik, Klien diarahkan untuk menyalurkan ekspresi diri secara konstruktif serta membangun kepercayaan diri sebagai bekal kembali ke tengah masyarakat. Kegiatan ini melibatkan Lembaga Makassar Musician Community 90 (LMMC 90) sebagai instruktur dalam bimbingan kemandirian tersebut.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/AXVKdmK.jpeg', 'Pelatihan Musik - Foto 1')"><img src="https://i.imgur.com/AXVKdmK.jpeg" alt="Pelatihan Musik 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/JS9f6lZ.jpeg', 'Pelatihan Musik - Foto 2')"><img src="https://i.imgur.com/JS9f6lZ.jpeg" alt="Pelatihan Musik 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/CTzlTkq.jpeg', 'Pelatihan Musik - Foto 3')"><img src="https://i.imgur.com/CTzlTkq.jpeg" alt="Pelatihan Musik 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/wNNAngB.jpeg', 'Pelatihan Musik - Foto 4')"><img src="https://i.imgur.com/wNNAngB.jpeg" alt="Pelatihan Musik 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/jKWCAUT.jpeg', 'Pelatihan Musik - Foto 5')"><img src="https://i.imgur.com/jKWCAUT.jpeg" alt="Pelatihan Musik 5" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/6cXArSE.jpeg', 'Pelatihan Musik - Foto 6')"><img src="https://i.imgur.com/6cXArSE.jpeg" alt="Pelatihan Musik 6" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🎵</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           📝
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Penandatanganan Perjanjian Kerja Sama</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Dalam rangka mempersiapkan pemberlakuan Kitab Undang-Undang Hukum Pidana (KUHP) Nasional yang akan berlaku efektif pada tahun 2026, Balai Pemasyarakatan (Bapas) Kelas I Makassar terus melakukan langkah-langkah strategis secara intensif. Salah satunya melalui penguatan Zona Griya Abhipraya Sombere, yang akan difungsikan sebagai lokasi pelaksanaan alternatif pemidanaan serta wadah pemberdayaan bagi mantan warga binaan di wilayah setempat. Sebagai bagian dari langkah tersebut, Bapas Makassar melaksanakan penandatanganan Perjanjian Kerja Sama (PKS) dengan Pemerintah daerah.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/yjLgSSj.jpeg', 'Penandatanganan PKS - Foto 1')"><img src="https://i.imgur.com/yjLgSSj.jpeg" alt="Penandatanganan PKS 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>📝</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/SgMUpI2.jpeg', 'Penandatanganan PKS - Foto 2')"><img src="https://i.imgur.com/SgMUpI2.jpeg" alt="Penandatanganan PKS 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>📝</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/yN4UEgY.jpeg', 'Penandatanganan PKS - Foto 3')"><img src="https://i.imgur.com/yN4UEgY.jpeg" alt="Penandatanganan PKS 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>📝</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/hS9kZfK.jpeg', 'Penandatanganan PKS - Foto 4')"><img src="https://i.imgur.com/hS9kZfK.jpeg" alt="Penandatanganan PKS 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>📝</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           💈
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Pelatihan Barbershop</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Pelatihan barbershop merupakan program pembinaan kemandirian yang memberikan keterampilan praktis kepada Klien Pemasyarakatan dalam bidang tata rias rambut pria. Melalui pelatihan ini, klien dibekali dengan teknik-teknik profesional dalam mencukur, memotong, dan menata rambut, sehingga mereka dapat membuka usaha mandiri atau bekerja di salon barbershop setelah menjalani masa pembimbingan. Program ini tidak hanya mengajarkan keterampilan teknis, tetapi juga membangun etika kerja dan kepercayaan diri klien dalam berinteraksi dengan pelanggan.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/yIxtVzr.jpeg', 'Pelatihan Barbershop - Foto 1')"><img src="https://i.imgur.com/yIxtVzr.jpeg" alt="Pelatihan Barbershop 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>💈</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/dsiCx2C.jpeg', 'Pelatihan Barbershop - Foto 2')"><img src="https://i.imgur.com/dsiCx2C.jpeg" alt="Pelatihan Barbershop 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>💈</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/tPSxsWM.jpeg', 'Pelatihan Barbershop - Foto 3')"><img src="https://i.imgur.com/tPSxsWM.jpeg" alt="Pelatihan Barbershop 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>💈</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="mb-16 animate-on-scroll fade-in-up">
+       <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);">
+        <div class="p-8 md:p-12">
+         <div class="flex items-center mb-6">
+          <div class="text-5xl mr-4">
+           🚗
+          </div>
+          <h3 class="text-3xl md:text-4xl font-bold" style="color: #1a1a1a;">Pelatihan Dico Mobil</h3>
+         </div>
+         <p class="text-lg leading-relaxed mb-8 text-justify" style="color: #2d2d2d;">Pelatihan dico (detailing dan coating) mobil adalah program pembinaan kemandirian yang memberikan keterampilan profesional kepada Klien Pemasyarakatan dalam bidang perawatan dan pemeliharaan kendaraan. Melalui pelatihan ini, klien mempelajari teknik pembersihan mendalam (detailing), perawatan interior dan eksterior, serta aplikasi coating untuk melindungi cat mobil. Program ini membekali klien dengan keterampilan yang sangat dibutuhkan di industri otomotif, membuka peluang untuk bekerja di bengkel detailing atau membuka usaha mandiri setelah masa pembimbingan.</p>
+         <div class="overflow-x-auto scrollbar-custom pb-4">
+          <div class="flex gap-4" style="width: max-content;">
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/YCfuEdz.jpeg', 'Pelatihan Dico Mobil - Foto 1')"><img src="https://i.imgur.com/YCfuEdz.jpeg" alt="Pelatihan Dico Mobil 1" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🚗</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/4kaL0RO.jpeg', 'Pelatihan Dico Mobil - Foto 2')"><img src="https://i.imgur.com/4kaL0RO.jpeg" alt="Pelatihan Dico Mobil 2" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🚗</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/EfDVmK3.jpeg', 'Pelatihan Dico Mobil - Foto 3')"><img src="https://i.imgur.com/EfDVmK3.jpeg" alt="Pelatihan Dico Mobil 3" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🚗</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/qIhOHsi.jpeg', 'Pelatihan Dico Mobil - Foto 4')"><img src="https://i.imgur.com/qIhOHsi.jpeg" alt="Pelatihan Dico Mobil 4" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🚗</div>';">
+           </div>
+           <div class="gallery-image rounded-2xl overflow-hidden shadow-lg cursor-pointer flex-shrink-0" style="width: 350px; height: 250px;" onclick="openImageModal('https://i.imgur.com/xn5NtCg.jpeg', 'Pelatihan Dico Mobil - Foto 5')"><img src="https://i.imgur.com/xn5NtCg.jpeg" alt="Pelatihan Dico Mobil 5" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-6xl bg-gray-200\'>🚗</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- INFO PUBLIK PAGE -->
+   <div id="page-info" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title animate-on-scroll fade-in-down">Informasi Publik</h2><!-- SECTION REGULASI -->
+      <div class="mb-20 rounded-3xl shadow-2xl overflow-hidden animate-on-scroll fade-in-up" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 3rem;">
+       <div class="text-center mb-12">
+        <div class="text-6xl mb-4">
+         📜
+        </div>
+        <h3 class="text-4xl md:text-5xl font-bold mb-4" style="color: #1a1a1a;">Peraturan &amp; Regulasi</h3>
+        <p class="text-lg max-w-3xl mx-auto leading-relaxed" style="color: #2d2d2d;">Dokumen regulasi dan landasan hukum yang mengatur penyelenggaraan Griya Abhipraya Sombere</p>
+       </div>
+       <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"><a href="https://drive.google.com/file/d/1xHHq0AOvvFUBZdza6ZYbeSeKT9e6MbHs/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded-2xl shadow-lg p-8 card-hover transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+         <div class="flex items-start">
+          <div class="text-4xl mr-4 flex-shrink-0">
+           📄
+          </div>
+          <div class="text-white">
+           <h4 class="text-xl font-bold mb-2">Undang-Undang Nomor 1 Tahun 2023</h4>
+           <p class="text-sm opacity-90 mb-3">Tentang Kitab Undang-Undang Hukum Pidana</p><span class="inline-block text-sm font-semibold px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.2); color: #d4af37;">Lihat Dokumen →</span>
+          </div>
+         </div></a> <a href="https://drive.google.com/file/d/1_I6e8s-IM5tbQ9NdJTvKFgM4eViPyglU/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded-2xl shadow-lg p-8 card-hover transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);">
+         <div class="flex items-start">
+          <div class="text-4xl mr-4 flex-shrink-0">
+           📄
+          </div>
+          <div class="text-white">
+           <h4 class="text-xl font-bold mb-2">Undang-Undang Nomor 22 Tahun 2022</h4>
+           <p class="text-sm opacity-90 mb-3">Tentang Pemasyarakatan</p><span class="inline-block text-sm font-semibold px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.2); color: #d4af37;">Lihat Dokumen →</span>
+          </div>
+         </div></a> <a href="https://drive.google.com/file/d/13uRcliSbzdIZ_AhEP8C-TU5nh1ml7GBB/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded-2xl shadow-lg p-8 card-hover transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #3d3d3d 0%, #4a4a4a 100%);">
+         <div class="flex items-start">
+          <div class="text-4xl mr-4 flex-shrink-0">
+           📄
+          </div>
+          <div class="text-white">
+           <h4 class="text-xl font-bold mb-2">Peraturan Pemerintah Nomor 31 Tahun 1999</h4>
+           <p class="text-sm opacity-90 mb-3">Tentang Pembinaan dan Pembimbingan Warga Binaan Pemasyarakatan</p><span class="inline-block text-sm font-semibold px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.2); color: #d4af37;">Lihat Dokumen →</span>
+          </div>
+         </div></a> <a href="https://drive.google.com/file/d/1huaORxaXsgVBUrIsgC8TVyBkCPuTCLw4/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="rounded-2xl shadow-lg p-8 card-hover transition-all duration-300 hover:scale-105" style="background: linear-gradient(135deg, #4a4a4a 0%, #5a5a5a 100%);">
+         <div class="flex items-start">
+          <div class="text-4xl mr-4 flex-shrink-0">
+           📄
+          </div>
+          <div class="text-white">
+           <h4 class="text-xl font-bold mb-2">Pedoman Pembentukan dan Penyelenggaraan</h4>
+           <p class="text-sm opacity-90 mb-3">Griya Abhipraya</p><span class="inline-block text-sm font-semibold px-3 py-1 rounded-full" style="background: rgba(212, 175, 55, 0.2); color: #d4af37;">Lihat Dokumen →</span>
+          </div>
+         </div></a>
+       </div>
+      </div><!-- SECTION POKMAS LIPAS -->
+      <div class="rounded-3xl shadow-2xl overflow-hidden animate-on-scroll fade-in-up" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 3rem;">
+       <div class="text-center mb-12">
+        <div class="text-6xl mb-4">
+         🤝
+        </div>
+        <h3 class="text-4xl md:text-5xl font-bold mb-4" style="color: #1a1a1a;">POKMAS LIPAS</h3>
+        <p class="text-xl font-semibold mb-2" style="color: #2d5016;">Kelompok Masyarakat Peduli Pemasyarakatan</p>
+       </div>
+       <div class="max-w-6xl mx-auto mb-12">
+        <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);">
+         <div class="p-8 md:p-12">
+          <div class="flex items-center justify-center mb-6">
+           <div class="text-6xl">
+            🌟
+           </div>
+          </div>
+          <p class="text-xl md:text-2xl leading-relaxed text-center font-medium" style="color: #1a1a1a;">Kelompok Masyarakat Peduli Pemasyarakatan atau yang biasa disingkat dengan <strong>POKMAS LIPAS</strong> adalah kumpulan mitra kerja pemasyarakatan yang memiliki kepedulian tinggi dan kesediaan berpartisipasi dalam penyelenggaraan pemasyarakatan, dalam rangka membentuk Warga Binaan agar menjadi manusia seutuhnya, menyadari kesalahan, memperbaiki diri, dan tidak mengulangi tindak pidana sehingga dapat diterima kembali oleh lingkungan masyarakat, dapat aktif berperan dalam pembangunan, dan dapat hidup secara wajar sebagai warga yang baik dan bertanggung jawab.</p>
+         </div>
+        </div>
+       </div>
+       <div class="max-w-6xl mx-auto mb-12">
+        <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #2d5016 0%, #3d6b1f 100%);">
+         <div class="p-8 md:p-12">
+          <h4 class="text-3xl md:text-4xl font-bold text-center mb-8 text-white">💎 Nilai-Nilai POKMAS LIPAS</h4>
+          <div class="grid md:grid-cols-5 gap-6">
+           <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl" style="background: rgba(255, 255, 255, 0.2);">
+             ⚡
+            </div>
+            <h5 class="text-xl font-bold text-white mb-2">Aktif</h5>
+            <p class="text-white opacity-90">Bergerak nyata dalam aksi</p>
+           </div>
+           <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl" style="background: rgba(255, 255, 255, 0.2);">
+             🎨
+            </div>
+            <h5 class="text-xl font-bold text-white mb-2">Kreatif</h5>
+            <p class="text-white opacity-90">Inovatif dalam solusi</p>
+           </div>
+           <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl" style="background: rgba(255, 255, 255, 0.2);">
+             ⚡
+            </div>
+            <h5 class="text-xl font-bold text-white mb-2">Responsif</h5>
+            <p class="text-white opacity-90">Tanggap pada kebutuhan</p>
+           </div>
+           <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl" style="background: rgba(255, 255, 255, 0.2);">
+             ✅
+            </div>
+            <h5 class="text-xl font-bold text-white mb-2">Akuntabel</h5>
+            <p class="text-white opacity-90">Bertanggung jawab penuh</p>
+           </div>
+           <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full flex items-center justify-center text-4xl" style="background: rgba(255, 255, 255, 0.2);">
+             💚
+            </div>
+            <h5 class="text-xl font-bold text-white mb-2">Bermanfaat</h5>
+            <p class="text-white opacity-90">Memberi dampak positif</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+       <div class="max-w-6xl mx-auto">
+        <h4 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: #1a1a1a;">🎯 Sasaran Bidang Kerja POKMAS LIPAS</h4>
+        <div class="space-y-8">
+         <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);">
+          <div class="grid md:grid-cols-2 gap-0">
+           <div class="order-2 md:order-1 cursor-pointer" onclick="openImageModal('https://i.imgur.com/vwH5hj9.jpeg', 'Kemandirian - POKMAS LIPAS')"><img src="https://i.imgur.com/vwH5hj9.jpeg" alt="Kemandirian" class="w-full h-full object-cover" style="min-height: 300px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-blue-200\'>💼</div>';">
+           </div>
+           <div class="order-1 md:order-2 p-8 md:p-10 flex flex-col justify-center">
+            <div class="flex items-center mb-4">
+             <div class="text-5xl mr-4">
+              💼
+             </div>
+             <h5 class="text-3xl font-bold text-white">A. Kemandirian</h5>
+            </div>
+            <p class="text-lg text-white leading-relaxed">Penyaluran tenaga kerja dan bentuk wirausaha atau bentuk lain yang sesuai kebutuhan. Program ini meliputi bidang <strong>manufaktur/industri, agribisnis, jasa</strong> dan lain-lain yang bertujuan membangun kemandirian ekonomi klien pemasyarakatan.</p>
+           </div>
+          </div>
+         </div>
+         <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #7c2d12 0%, #dc2626 100%);">
+          <div class="grid md:grid-cols-2 gap-0">
+           <div class="p-8 md:p-10 flex flex-col justify-center">
+            <div class="flex items-center mb-4">
+             <div class="text-5xl mr-4">
+              🌱
+             </div>
+             <h5 class="text-3xl font-bold text-white">B. Kepribadian</h5>
+            </div>
+            <p class="text-lg text-white leading-relaxed">Kegiatan yang berkaitan dengan upaya peningkatan <strong>keimanan, kesehatan, dan intelektual</strong> klien. Meliputi bidang-bidang antara lain: <strong>keagamaan, psikolog, pendidikan</strong>, dan program pengembangan diri lainnya yang membangun karakter positif.</p>
+           </div>
+           <div class="cursor-pointer" onclick="openImageModal('https://i.imgur.com/xk4FCQy.jpeg', 'Kepribadian - POKMAS LIPAS')"><img src="https://i.imgur.com/xk4FCQy.jpeg" alt="Kepribadian" class="w-full h-full object-cover" style="min-height: 300px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-red-200\'>🌱</div>';">
+           </div>
+          </div>
+         </div>
+         <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #713f12 0%, #f59e0b 100%);">
+          <div class="grid md:grid-cols-2 gap-0">
+           <div class="order-2 md:order-1 cursor-pointer" onclick="openImageModal('https://i.imgur.com/wxbvCn9.jpeg', 'Hukum - POKMAS LIPAS')"><img src="https://i.imgur.com/wxbvCn9.jpeg" alt="Hukum" class="w-full h-full object-cover" style="min-height: 300px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-yellow-200\'>⚖️</div>';">
+           </div>
+           <div class="order-1 md:order-2 p-8 md:p-10 flex flex-col justify-center">
+            <div class="flex items-center mb-4">
+             <div class="text-5xl mr-4">
+              ⚖️
+             </div>
+             <h5 class="text-3xl font-bold text-white">C. Hukum</h5>
+            </div>
+            <p class="text-lg text-white leading-relaxed">Diberikan dalam rangka meningkatkan <strong>kesadaran hukum</strong> serta peningkatan layanan dalam rangka memberikan kepastian hukum. Program ini meliputi bidang <strong>bantuan hukum dan penyuluhan</strong> yang membantu klien memahami hak dan kewajiban hukumnya.</p>
+           </div>
+          </div>
+         </div>
+         <div class="rounded-3xl shadow-2xl overflow-hidden" style="background: linear-gradient(135deg, #14532d 0%, #16a34a 100%);">
+          <div class="grid md:grid-cols-2 gap-0">
+           <div class="p-8 md:p-10 flex flex-col justify-center">
+            <div class="flex items-center mb-4">
+             <div class="text-5xl mr-4">
+              🤝
+             </div>
+             <h5 class="text-3xl font-bold text-white">D. Kemasyarakatan</h5>
+            </div>
+            <p class="text-lg text-white leading-relaxed">Meliputi bidang-bidang <strong>sosial</strong> yang melibatkan klien dengan aktivitas sosial pada lingkungan masyarakat. Mencakup <strong>masyarakat sekitar tempat tinggal klien, LSM, Karang Taruna</strong> atau Organisasi Kemasyarakatan Lainnya untuk membangun reintegrasi sosial yang harmonis.</p>
+           </div>
+           <div class="cursor-pointer" onclick="openImageModal('https://i.imgur.com/cKeCebF.jpeg', 'Kemasyarakatan - POKMAS LIPAS')"><img src="https://i.imgur.com/cKeCebF.jpeg" alt="Kemasyarakatan" class="w-full h-full object-cover" style="min-height: 300px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-8xl bg-green-200\'>🤝</div>';">
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- KONTAK PAGE -->
+   <div id="page-kontak" class="page">
+    <section class="py-20 px-4" style="margin-top: 80px;">
+     <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 section-title animate-on-scroll fade-in-down">Hubungi Kami</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+       <div class="animate-on-scroll fade-in-left">
+        <div class="rounded-2xl shadow-lg p-8 mb-8 card-hover">
+         <h3 class="text-3xl font-bold mb-6">📍 Informasi Kontak</h3>
+         <div class="space-y-6">
+          <div class="flex items-start">
+           <div class="text-3xl mr-4">
+            🏢
+           </div>
+           <div>
+            <h4 class="font-bold text-xl mb-2">Alamat</h4>
+            <p id="contact-address" class="text-lg leading-relaxed">Jl. Letjen Hertasning No.1, Bua Kana, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222</p>
+           </div>
+          </div>
+          <div class="flex items-start">
+           <div class="text-3xl mr-4">
+            📧
+           </div>
+           <div>
+            <h4 class="font-bold text-xl mb-2">Email</h4>
+            <p id="contact-email" class="text-lg">griyaabhiprayasombere@gmail.com</p>
+           </div>
+          </div>
+          <div class="flex items-start">
+           <div class="text-3xl mr-4">
+            📱
+           </div>
+           <div>
+            <h4 class="font-bold text-xl mb-2">Telepon</h4>
+            <p id="contact-phone" class="text-lg">+62 812-3456-7890</p>
+           </div>
+          </div>
+          <div class="flex items-start">
+           <div class="text-3xl mr-4">
+            ⏰
+           </div>
+           <div>
+            <h4 class="font-bold text-xl mb-2">Jam Operasional</h4>
+            <p class="text-lg">Senin - Jumat: 08:00 - 16:00 WITA</p>
+            <p class="text-lg">Sabtu - Minggu: Tutup</p>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="rounded-2xl shadow-lg p-8 card-hover">
+         <h3 class="text-3xl font-bold mb-6">🌐 Media Sosial</h3>
+         <div class="space-y-4"><a href="https://www.facebook.com/share/g/19fsGnbgpU/" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-lg transition-all duration-300 hover:scale-105" style="background: #1877f2; color: white;"> <span class="text-2xl mr-4">📘</span> <span class="text-lg font-semibold">Facebook: Griya Abhipraya Sombere</span> </a> <a href="https://www.instagram.com/griyaabhiprayasombere" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 rounded-lg transition-all duration-300 hover:scale-105" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white;"> <span class="text-2xl mr-4">📷</span> <span class="text-lg font-semibold">Instagram: @griyaabhiprayasombere</span> </a>
+         </div>
+        </div>
+       </div>
+       <div class="animate-on-scroll fade-in-right">
+        <div class="rounded-2xl shadow-lg overflow-hidden h-full card-hover"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.6742891234567!2d119.43234567890123!3d-5.123456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNcKwMDcnMjQuNCJTIDExOcKwMjUnNTYuNCJF!5e0!3m2!1sid!2sid!4v1234567890123!5m2!1sid!2sid" width="100%" height="600" style="border:0; min-height: 100%;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Griya Abhipraya Sombere"> </iframe>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+   </div><!-- Footer -->
+   <footer id="footer" class="py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="grid md:grid-cols-3 gap-8 mb-8">
+      <div>
+       <h3 class="text-2xl font-bold mb-4">Griya Abhipraya Sombere</h3>
+       <p class="mb-4 opacity-90 text-justify">Wadah pemberdayaan dan transformasi positif bagi Klien Pemasyarakatan menuju kehidupan yang lebih bermakna.</p>
+      </div>
+      <div>
+       <h4 class="text-xl font-bold mb-4">Tautan Cepat</h4>
+       <ul class="space-y-2">
+        <li><a href="#" onclick="navigateTo(event, 'tentang')" class="hover:underline opacity-90">Tentang Kami</a></li>
+        <li><a href="#" onclick="navigateTo(event, 'berita')" class="hover:underline opacity-90">Berita</a></li>
+        <li><a href="#" onclick="navigateTo(event, 'penerimaan')" class="hover:underline opacity-90">Penerimaan Klien</a></li>
+        <li><a href="#" onclick="navigateTo(event, 'produk')" class="hover:underline opacity-90">Produk</a></li>
+        <li><a href="#" onclick="navigateTo(event, 'galeri')" class="hover:underline opacity-90">Galeri</a></li>
+        <li><a href="#" onclick="navigateTo(event, 'kontak')" class="hover:underline opacity-90">Hubungi Kami</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-xl font-bold mb-4">Kontak</h4>
+       <ul class="space-y-3 opacity-90">
+        <li class="flex items-start"><span class="mr-2">📧</span> <span id="footer-contact-email">griyaabhiprayasombere@gmail.com</span></li>
+        <li class="flex items-start"><span class="mr-2">📲</span> <span id="footer-contact-phone">+62 895-3388-37630</span></li>
+        <li class="flex items-start"><span class="mr-2">📍</span> <span id="footer-contact-address">Jl. Letjen Hertasning No.1, Bua Kana, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222</span></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t pt-8 text-center opacity-80">
+      <p>© 2024 Griya Abhipraya Sombere - Bapas Kelas I Makassar. All rights reserved.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      background_color: "#1a1a1a",
+      surface_color: "#ffffff",
+      text_color: "#2d2d2d",
+      primary_action_color: "#000000",
+      secondary_action_color: "#4a4a4a",
+      hero_title: "Griya Abhipraya Sombere",
+      hero_slogan: '"Pemasyarakatan Pasti Bermanfaat Untuk Masyarakat"',
+      welcome_title: "Sambutan Ketua Griya Abhipraya Sombere",
+      chairman_name: "Dr. A. Marwan Eryansyah, A.Md.IP., S.H., M.H.",
+      contact_email: "griyaabhiprayasombere@gmail.com",
+      contact_phone: "+62 895 3388 37630",
+      contact_address: "Jl. Letjen Hertasning No.1, Bua Kana, Kec. Rappocini, Kota Makassar, Sulawesi Selatan 90222"
+    };
+
+    let currentPage = 'beranda';
+
+    function adjustColorBrightness(color, percent) {
+      const num = parseInt(color.replace("#",""), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = (num >> 16) + amt;
+      const G = (num >> 8 & 0x00FF) + amt;
+      const B = (num & 0x0000FF) + amt;
+      return "#" + (0x1000000 + (R<255?R<1?0:R:255)*0x10000 +
+        (G<255?G<1?0:G:255)*0x100 + (B<255?B<1?0:B:255))
+        .toString(16).slice(1);
+    }
+
+    function navigateTo(event, page) {
+      event.preventDefault();
+      
+      const currentPageEl = document.getElementById('page-' + currentPage);
+      if (currentPageEl) {
+        currentPageEl.classList.remove('active');
+      }
+
+      const newPageEl = document.getElementById('page-' + page);
+      if (newPageEl) {
+        newPageEl.classList.add('active');
+        currentPage = page;
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        updateActiveNav(page);
+        
+        document.getElementById('mobile-menu').classList.add('hidden');
+        
+        setTimeout(() => {
+          initScrollAnimations();
+        }, 100);
+      }
+      
+      return false;
+    }
+
+    function updateActiveNav(page) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('data-page') === page) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+      
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        if (link.getAttribute('data-page') === page) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    async function onConfigChange(config) {
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+      document.getElementById('navbar').style.background = '#1a1a1a';
+      document.getElementById('navbar').style.color = '#ffffff';
+      document.getElementById('nav-title').style.color = '#ffffff';
+      
+      const navSubtitle = document.querySelector('#navbar p');
+      if (navSubtitle) {
+        navSubtitle.style.color = '#ffffff';
+      }
+      
+      const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+      navLinks.forEach(link => {
+        link.style.color = '#ffffff';
+      });
+      
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      if (mobileMenuBtn) {
+        mobileMenuBtn.style.color = '#ffffff';
+      }
+      
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) {
+        mobileMenu.style.background = '#1a1a1a';
+      }
+
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-title').style.color = '#ffffff';
+      document.getElementById('hero-slogan').textContent = config.hero_slogan || defaultConfig.hero_slogan;
+      document.getElementById('hero-slogan').style.color = '#e0e0e0';
+      
+      const heroBtn = document.getElementById('hero-btn');
+      heroBtn.style.background = primaryColor;
+      heroBtn.style.color = surfaceColor;
+
+      const pages = document.querySelectorAll('.page section');
+      pages.forEach(section => {
+        section.style.background = `linear-gradient(135deg, ${surfaceColor} 0%, ${adjustColorBrightness(surfaceColor, -10)} 100%)`;
+        section.style.color = textColor;
+      });
+
+      const cards = document.querySelectorAll('.rounded-2xl');
+      cards.forEach(card => {
+        if (!card.style.background.includes('linear-gradient') || 
+            !card.style.background.includes('rgb')) {
+          card.style.background = `linear-gradient(135deg, ${surfaceColor} 0%, ${adjustColorBrightness(surfaceColor, -5)} 100%)`;
+        }
+        card.style.color = textColor;
+      });
+
+      const penerimaanBtns = document.querySelectorAll('.penerimaan-btn');
+      penerimaanBtns.forEach(btn => {
+        btn.style.background = primaryColor;
+        btn.style.color = surfaceColor;
+      });
+      
+      const orderBtn = document.querySelector('.order-btn');
+      if (orderBtn) {
+        orderBtn.style.background = primaryColor;
+        orderBtn.style.color = surfaceColor;
+      }
+
+      const badges = document.querySelectorAll('article span');
+      badges.forEach(badge => {
+        badge.style.background = secondaryColor;
+        badge.style.color = surfaceColor;
+      });
+
+      const footer = document.getElementById('footer');
+      footer.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${adjustColorBrightness(bgColor, 15)} 100%)`;
+      footer.style.color = surfaceColor;
+
+      document.getElementById('welcome-title').textContent = config.welcome_title || defaultConfig.welcome_title;
+      document.getElementById('chairman-name').textContent = config.chairman_name || defaultConfig.chairman_name;
+      document.getElementById('contact-email').textContent = config.contact_email || defaultConfig.contact_email;
+      document.getElementById('contact-phone').textContent = config.contact_phone || defaultConfig.contact_phone;
+      document.getElementById('contact-address').textContent = config.contact_address || defaultConfig.contact_address;
+      document.getElementById('footer-contact-email').textContent = config.contact_email || defaultConfig.contact_email;
+      document.getElementById('footer-contact-phone').textContent = config.contact_phone || defaultConfig.contact_phone;
+      document.getElementById('footer-contact-address').textContent = config.contact_address || defaultConfig.contact_address;
+    }
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+
+    let lastScrollY = 0;
+    let ticking = false;
+    
+    function updateParallax() {
+      const navbar = document.getElementById('navbar');
+      const scrollY = window.scrollY;
+      
+      if (currentPage === 'beranda') {
+        if (scrollY > 100) {
+          navbar.style.background = '#1a1a1a';
+          navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        } else {
+          navbar.style.background = 'rgba(26, 26, 26, 0.7)';
+          navbar.style.boxShadow = 'none';
+        }
+        
+        const heroBgLayer = document.getElementById('hero-bg-layer');
+        const heroContentLayer = document.getElementById('hero-content-layer');
+        const heroBgImg = document.getElementById('hero-bg-img');
+        
+        if (heroBgLayer && heroContentLayer && heroBgImg && scrollY > 0) {
+          const bgTranslate = `translateY(${scrollY * 0.5}px)`;
+          heroBgLayer.style.transform = bgTranslate;
+          
+          const contentTranslate = `translateY(${scrollY * 0.3}px)`;
+          heroContentLayer.style.transform = contentTranslate;
+          
+          const scale = 1 + (scrollY * 0.0005);
+          heroBgImg.style.transform = `scale(${scale})`;
+          
+          const opacity = 1 - (scrollY / 600);
+          heroContentLayer.style.opacity = Math.max(0, opacity);
+        }
+      } else {
+        navbar.style.background = '#1a1a1a';
+        navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+      }
+      
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+      lastScrollY = window.scrollY;
+      
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateParallax();
+        });
+        ticking = true;
+      }
+    });
+
+    function openImageModal(imageSrc, caption) {
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const modalCaption = document.getElementById('modal-caption');
+      
+      modal.classList.add('active');
+      modalImg.src = imageSrc;
+      modalCaption.textContent = caption;
+      document.body.style.overflow = 'hidden';
+    }
+
+    const passwordModal = document.getElementById('password-modal');
+    const passwordInput = document.getElementById('password-input');
+    const passwordError = document.getElementById('password-error');
+    const submitPassword = document.getElementById('submit-password');
+    const closePasswordModal = document.getElementById('close-password-modal');
+    let currentFormType = '';
+    const CORRECT_PASSWORD = '12345';
+
+    function showPasswordModal(formType) {
+      currentFormType = formType;
+      passwordModal.classList.add('active');
+      passwordInput.value = '';
+      passwordError.classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => passwordInput.focus(), 100);
+    }
+
+    function closePasswordModalHandler() {
+      passwordModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+      passwordInput.value = '';
+      passwordError.classList.add('hidden');
+      currentFormType = '';
+    }
+
+    function verifyPassword() {
+      const enteredPassword = passwordInput.value;
+      
+      if (enteredPassword === CORRECT_PASSWORD) {
+        const formUrl = 'https://forms.gle/MTPbFo5QsyuVpuxX7';
+        window.open(formUrl, '_blank', 'noopener,noreferrer');
+        closePasswordModalHandler();
+      } else {
+        passwordError.classList.remove('hidden');
+        passwordInput.value = '';
+        passwordInput.focus();
+      }
+    }
+
+    submitPassword.addEventListener('click', verifyPassword);
+    
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        verifyPassword();
+      }
+    });
+
+    closePasswordModal.addEventListener('click', closePasswordModalHandler);
+
+    passwordModal.addEventListener('click', function(e) {
+      if (e.target === passwordModal) {
+        closePasswordModalHandler();
+      }
+    });
+
+    const modal = document.getElementById('image-modal');
+    const closeModal = document.getElementById('close-modal');
+    
+    closeModal.addEventListener('click', function() {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    function initScrollAnimations() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            
+            if (entry.target.classList.contains('fade-in-up')) {
+              entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+            } else if (entry.target.classList.contains('fade-in-down')) {
+              entry.target.style.animation = 'fadeInDown 0.8s ease-out forwards';
+            } else if (entry.target.classList.contains('fade-in-left')) {
+              entry.target.style.animation = 'fadeInLeft 0.8s ease-out forwards';
+            } else if (entry.target.classList.contains('fade-in-right')) {
+              entry.target.style.animation = 'fadeInRight 0.8s ease-out forwards';
+            } else if (entry.target.classList.contains('scale-in')) {
+              entry.target.style.animation = 'scaleIn 0.6s ease-out forwards';
+            } else if (entry.target.classList.contains('slide-in-up')) {
+              entry.target.style.animation = 'slideInUp 0.8s ease-out forwards';
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+                config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_slogan", config.hero_slogan || defaultConfig.hero_slogan],
+          ["welcome_title", config.welcome_title || defaultConfig.welcome_title],
+          ["chairman_name", config.chairman_name || defaultConfig.chairman_name],
+          ["contact_email", config.contact_email || defaultConfig.contact_email],
+          ["contact_phone", config.contact_phone || defaultConfig.contact_phone],
+          ["contact_address", config.contact_address || defaultConfig.contact_address]
+        ])
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      initScrollAnimations();
+      onConfigChange(defaultConfig);
+      updateActiveNav('beranda');
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9aeb55b5e1283541',t:'MTc2NTg1ODI2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
